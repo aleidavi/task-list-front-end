@@ -87,8 +87,8 @@ const App = () => {
     console.log(`we selected this task: ${id}`);
     // Check this currnet task (id):
     // check its prop for isCompleted
-      // true/false -> ternary statement maybe?
-      // return (task)
+    // true/false -> ternary statement maybe?
+    // return (task)
 
     const currentTask = tasks.find(task => task.id === id);
 
