@@ -127,10 +127,10 @@ const App = () => {
   // const deleteTaskHandle = (id) => {
   //   setTasksData(tasks=>tasks.filter(task => task.id !== id));
   // };
-  const handleSubmit = (TaskData) => {
-    axios.post(`${kbaseURL}/cats`, TasktData)
+  const handleSubmit = (tasks) => {
+    axios.post(`${kbaseURL}/cats`, tasks)
       .then((result) => {
-        setCatData((prevTasks) => [convertFromApi(result.data), ...prevTasks]);
+        setTasksData((prevTasks) => [convertFromApi(result.data), ...prevTasks]);
       })
       .catch((error) => console.log(error));
   };
