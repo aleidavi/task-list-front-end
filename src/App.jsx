@@ -2,6 +2,7 @@ import TaskList from './components/TaskList.jsx';
 import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import NewTaskForm from './components/NewTaskForm.jsx';
 
 const TASKS = [
   {
@@ -126,6 +127,13 @@ const App = () => {
   // const deleteTaskHandle = (id) => {
   //   setTasksData(tasks=>tasks.filter(task => task.id !== id));
   // };
+  const handleSubmit = (TaskData) => {
+    axios.post(`${kbaseURL}/cats`, TasktData)
+      .then((result) => {
+        setCatData((prevTasks) => [convertFromApi(result.data), ...prevTasks]);
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div className="App">
