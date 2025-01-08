@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const NewTaskForm = ({ handleSubmit }) => {
-  const [name, setName] = useState('');
+//  const [name, setName] = useState('');
   const kDefaultFormState = {
     title: '',
     id: '',
@@ -10,25 +10,17 @@ const NewTaskForm = ({ handleSubmit }) => {
 
   const [formData, setFormData] = useState(kDefaultFormState);
 
-  const handleChange = event => {
+  const handleFormChange = event => {
     const fieldName = event.target.name;
-    const fieldValue = event.target.value;
+	const fieldValue = event.target.value;
 
-  const handleNameChange = event => {
-    setName(event.target.value);
     const newFormData = {...formData, [fieldName] : fieldValue};
     setFormData(newFormData);
   };
 
   const onHandleSubmit = (event) => {
     event.preventDefault();
-    const newTask = {
-      title,
-      id: '',
-      isComplete: '',
-    };
-    handleSubmit(newTask);
-    setName('');
+
     handleSubmit(formData);
     setFormData(kDefaultFormState);
   };
@@ -37,20 +29,22 @@ const NewTaskForm = ({ handleSubmit }) => {
     <form onSubmit={onHandleSubmit}>
       <div>
         <label htmlFor="title">Task Title: </label>
-        <input type="text" id="title" name="title" value={formData.title} onChange={handleChange}/>
+        <input type="text" id="title" name="title" value={formData.title} onChange={handleFormChange}/>
       </div>
       <div>
         <label htmlFor="id">Task ID: </label>
-        <input type="number" id="id" name="id" value={formData.id} onChange={handleChange}/>
+        <input type="number" id="id" name="id" value={formData.id} onChange={handleFormChange}/>
       </div>
       <div>
-        <label htmlFor="isComplete">Task IsComplete: </label>
-        <input type="text" id="isComplete" name="isComplete" value={formData.isComplete} onChange={handleChange}/>
+        <label htmlFor="isComplete">Task Is Complete: </label>
+        <input type="text" id="isComplete" name="isComplete" value={formData.isComplete} onChange={handleFormChange}/>
       </div>
       <div>
-        <input type="submit" value="Add a Task" />
+        <input type="submit" value="add task" />
       </div> 
     </form>
   );
+
 };
+
 export default NewTaskForm;
