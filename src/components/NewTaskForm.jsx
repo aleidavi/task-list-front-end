@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const NewTaskForm = ({ handleSubmit }) => {
 //  const [name, setName] = useState('');
@@ -44,7 +45,9 @@ const NewTaskForm = ({ handleSubmit }) => {
       </div> 
     </form>
   );
-
+};
+NewTaskForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default NewTaskForm;
