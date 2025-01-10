@@ -5,14 +5,13 @@ const NewTaskForm = ({ handleSubmit }) => {
 //  const [name, setName] = useState('');
   const kDefaultFormState = {
     title: '',
-    id: '',
-    isComplete: '',
+	description: ''
   };
 
-  const [formData, setFormData] = useState(kDefaultFormState);
+  	const [formData, setFormData] = useState(kDefaultFormState);
 
-  const handleFormChange = event => {
-    const fieldName = event.target.name;
+  	const handleFormChange = event => {
+	const fieldName = event.target.name;
 	const fieldValue = event.target.value;
 
     const newFormData = {...formData, [fieldName] : fieldValue};
@@ -33,16 +32,16 @@ const NewTaskForm = ({ handleSubmit }) => {
         <input type="text" id="title" name="title" value={formData.title} onChange={handleFormChange}/>
       </div>
       <div>
-        <label htmlFor="id">Task ID: </label>
-        <input type="number" id="id" name="id" value={formData.id} onChange={handleFormChange}/>
+        <label htmlFor="description">Task description: </label>
+        <input type="test" id="description" name="description" value={formData.description} onChange={handleFormChange}/>
       </div>
-      <div>
-        <label htmlFor="isComplete">Task Is Complete: </label>
+      {/*<div>
+        <label htmlFor="isComplete">Completion Status: </label>
         <input type="text" id="isComplete" name="isComplete" value={formData.isComplete} onChange={handleFormChange}/>
-      </div>
+      </div>*/}
       <div>
         <input type="submit" value="add task" />
-      </div> 
+      </div>
     </form>
   );
 };

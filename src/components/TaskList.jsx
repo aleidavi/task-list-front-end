@@ -9,6 +9,7 @@ const TaskList = ({ tasks, toggleIsTaskComplete, deleteTaskHandle }) => {
         <Task
           key={task.id}
           id={task.id}
+		  description={task.description}
           title={task.title}
           isComplete={task.isComplete}
 
@@ -27,6 +28,7 @@ TaskList.propTypes = {
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
+	  description: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       isComplete: PropTypes.bool.isRequired,
     })

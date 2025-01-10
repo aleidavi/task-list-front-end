@@ -4,6 +4,7 @@ import './Task.css';
 
 const Task = ({
   id,
+  description,
   title,
   isComplete,
   toggleIsTaskComplete,
@@ -41,6 +42,7 @@ const Task = ({
 
 Task.propTypes = {
   id: PropTypes.number.isRequired,
+  description: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   isComplete: PropTypes.bool.isRequired,
   toggleIsTaskComplete: PropTypes.func.isRequired,

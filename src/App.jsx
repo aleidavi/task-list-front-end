@@ -4,19 +4,18 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import NewTaskForm from './components/NewTaskForm.jsx';
 
-const TASKS = [
-  {
-    id: 1,
-    title: 'Mow the lawn',
-    isComplete: false,
-  },
-  {
-    id: 2,
-    title: 'Cook Pasta',
-    isComplete: true,
-  },
-];
-
+//const TASKS = [
+//  {
+//    id: 1,
+//    title: 'Mow the lawn',
+//    isComplete: false,
+//  },
+//  {
+//    id: 2,
+//    title: 'Cook Pasta',
+//    isComplete: true,
+//  },
+//];
 
 /* Refactoring for Wave 4*/
 const kbaseURL = 'http://localhost:5000';
@@ -70,7 +69,7 @@ const removeTaskApi = (id) => {
 
 
 const App = () => {
-  const [tasks, setTasksData] = useState(TASKS);
+  const [tasks, setTasksData] = useState([]);
 
   const getAllTasks = () => {
     getAllTasksApi()
@@ -86,7 +85,7 @@ const App = () => {
 
   const toggleIsTaskComplete = (id) => {
     console.log(`we selected this task: ${id}`);
-    // Check this currnet task (id):
+    // Check this current task (id):
     // check its prop for isCompleted
     // true/false -> ternary statement maybe?
     // return (task)
@@ -127,9 +126,11 @@ const App = () => {
   // const deleteTaskHandle = (id) => {
   //   setTasksData(tasks=>tasks.filter(task => task.id !== id));
   // };
-  const handleSubmit = (tasks) => {
-    axios.post(`${kbaseURL}/cats`, tasks)
+  const handleSubmit = (newTask) => {
+	console.log(`Printing currently submitted task:${newTask}`);
+    axios.post(`${kbaseURL}/tasks`, newTask)
       .then((result) => {
+		console.log(`Message sent to backend: ${result} and ${newTask}`);
         setTasksData((prevTasks) => [convertFromApi(result.data), ...prevTasks]);
       })
       .catch((error) => console.log(error));
