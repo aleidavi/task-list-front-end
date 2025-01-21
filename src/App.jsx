@@ -24,10 +24,11 @@ const kbaseURL = 'http://localhost:5000';
 const convertFromApi = (apiTask) => {
   const newTask = {
     ...apiTask,
-    isComplete: apiTask.completed_at
+    isComplete: apiTask.is_complete,
   };
 
   delete newTask.completed_at;
+  delete newTask.is_complete;
   return newTask;
 };
 
@@ -37,6 +38,8 @@ const getAllTasksApi = () => {
     .then( response => {
       const apiTasks = response.data;
       const newTasks= apiTasks.map(convertFromApi);
+	  console.log('Get all tasks API Call:');
+	  console.log(newTasks);
       return newTasks;
     })
     .catch(error => {
@@ -73,8 +76,9 @@ const App = () => {
 
   const getAllTasks = () => {
     getAllTasksApi()
-      .then(tasks => {
-        setTasksData(tasks);
+      .then(newTasks=> {
+		console.log(newTasks);
+        setTasksData(newTasks);
       });
   };
 
@@ -122,15 +126,15 @@ const App = () => {
   //     }
   //   }));
   // };
-
   // const deleteTaskHandle = (id) => {
   //   setTasksData(tasks=>tasks.filter(task => task.id !== id));
   // };
-  const handleSubmit = (newTask) => {
-	console.log(`Printing currently submitted task:${newTask}`);
-    axios.post(`${kbaseURL}/tasks`, newTask)
+
+  const handleSubmit = (tasks) => {
+	console.log(`Printing currently submitted task:${tasks}`);
+    axios.post(`${kbaseURL}/tasks`, tasks)
       .then((result) => {
-		console.log(`Message sent to backend: ${result} and ${newTask}`);
+		console.log(`Message sent to backend: ${result} and ${tasks}`);
         setTasksData((prevTasks) => [convertFromApi(result.data), ...prevTasks]);
       })
       .catch((error) => console.log(error));

@@ -33,7 +33,7 @@ const NewTaskForm = ({ handleSubmit }) => {
       </div>
       <div>
         <label htmlFor="description">Task description: </label>
-        <input type="test" id="description" name="description" value={formData.description} onChange={handleFormChange}/>
+        <input type="text" id="description" name="description" value={formData.description} onChange={handleFormChange}/>
       </div>
       {/*<div>
         <label htmlFor="isComplete">Completion Status: </label>
